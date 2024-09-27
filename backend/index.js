@@ -3,7 +3,6 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import cookieParser from 'cookie-parser'
-import authRoutes from './routes/auth.routes.js'
 import { ApiError } from './utils/apiError.js'
 
 dotenv.config()
@@ -20,7 +19,10 @@ app.get('/', (req, res) => {
 })
 
 // Routes
+import authRoutes from './routes/auth.routes.js'
+import postRoutes from './routes/post.routes.js'
 app.use('/api/auth', authRoutes)
+app.use('/api/post', postRoutes)
 
 app.use((err, req, res, next) => {
   if (err instanceof ApiError) {
