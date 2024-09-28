@@ -32,3 +32,10 @@ export const createPost = asyncHandler(async (req, res, next) => {
     })
   )
 })
+
+export const getAllPosts = asyncHandler(async (req, res, next) => {
+  const posts = await Post.find()
+  res
+    .status(200)
+    .json(new ApiResponse(200, 'Posts fetched successfully', { posts }))
+})
